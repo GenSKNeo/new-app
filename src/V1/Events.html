@@ -1,0 +1,122 @@
+import { useState } from "react";
+
+function App() {
+  const [profiles, setProfiles] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // Fetch a single random profile
+  async function fetchProfile() {
+    setLoading(true);
+    try {
+      const response = await fetch("https://randomuser.me/api/");
+      const data = await response.json();
+      const user = data.results[0];
+      const profile = {
+        id: user.login.uuid, // unique ID from API
+        name: `${user.name.first} ${user.name.last}`,
+        email: user.email,
+        phone: user.phone,
+        avatar: user.picture.large,
+        dob: new Date(user.dob.date).toLocaleDateString(),
+      };
+      setProfiles([profile]); // replace with one profile
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // Fetch 3 random profiles
+  async function fetchThreeProfiles() {
+    setLoading(true);
+    try {
+      const response = await fetch("https://randomuser.me/api/?results=3");
+      const data = await response.json();
+      const users = data.results.map((user) => ({
+        id: user.login.uuid, // unique ID
+        name: `${user.name.first} ${user.name.last}`,
+        email: user.email,
+        phone: user.phone,
+        avatar: user.picture.large,
+        dob: new Date(user.dob.date).toLocaleDateString(),
+      }));
+      setProfiles(users);
+    } catch (error) {
+      console.error("Error fetching profiles:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // Clear all profiles
+  function clearProfiles() {
+    setProfiles([]);
+  }
+
+  // Delete a single profile
+  function deleteProfile(id) {
+    setProfiles(profiles.filter((p) => p.id !== id));
+  }
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Profile Viewer (API Edition)</h1>
+      <button onClick={fetchProfile}>Fetch Random Profile</button>
+      <button onClick={fetchThreeProfiles} style={{ marginLeft: "10px" }}>
+        Fetch 3 Profiles
+      </button>
+      <button onClick={clearProfiles} style={{ marginLeft: "10px" }}>
+        Clear All
+      </button>
+
+      {loading && <p>Loading...</p>}
+
+      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap", marginTop: "20px" }}>
+        {profiles.map((profile) => (
+          <div
+            key={profile.id}
+            style={{
+              border: "1px solid black",
+              padding: "10px",
+              width: "250px",
+              borderRadius: "10px",
+              position: "relative",
+            }}
+          >
+            {/* ❌ Delete Button */}
+            <button
+              onClick={() => deleteProfile(profile.id)}
+              style={{
+                position: "absolute",
+                top: "5px",
+                right: "5px",
+                border: "none",
+                background: "red",
+                color: "white",
+                borderRadius: "50%",
+                cursor: "pointer",
+                width: "25px",
+                height: "25px",
+              }}
+            >
+              ❌
+            </button>
+
+            <img
+              src={profile.avatar}
+              alt="avatar"
+              style={{ width: "100%", borderRadius: "10px" }}
+            />
+            <h2>{profile.name}</h2>
+            <p><b>Email:</b> {profile.email}</p>
+            <p><b>Phone:</b> {profile.phone}</p>
+            <p><b>DOB:</b> {profile.dob}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default App;
