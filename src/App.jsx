@@ -1,10 +1,15 @@
-
+import { useState } from "react";
+import ColorChanger from "./components/ColorChanger";
+import UserProfile from "./components/UserProfile";  
 export default function App() {
+  const [show, setShow] = useState(false);
+
   return (
     <div>
-      <h1>My First React App</h1>
-      <p>Hello, I’m learning React!</p>
-
+      <button onClick={() => setShow(!show)}>Toggle Message</button>
+      {show && <p>Hello, welcome to React!</p>}
+      <ColorChanger />
+      <UserProfile />
     </div>
   );
 }
