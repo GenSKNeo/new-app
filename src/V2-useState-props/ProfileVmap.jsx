@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ProfileCard from "./V2-useState-props/ProfileCard";
+import ProfileCard from "./V2/ProfileCard";
 
 function App() {
   const profiles = [

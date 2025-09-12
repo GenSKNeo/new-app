@@ -1,16 +1,14 @@
 import { useState } from "react";
-import ProfileCard from "./V2-useState-props/ProfileCard";
+import ProfileCard from "./V2/ProfileCard";
 
 function App() {
   const profiles = [
     { id: 1, name: "Alice", age: 25, bio: "Loves hiking and cats." },
     { id: 2, name: "Bob", age: 30, bio: "Enjoys coding and coffee." },
     { id: 3, name: "Charlie", age: 28, bio: "Avid reader and gamer." },
-    { id: 4, name: "Diana", age: 22, bio: "Passionate about art and music." },
-    { id: 5, name: "Ethan", age: 35, bio: "Travel enthusiast and foodie." },
-    { id: 6, name: "Fiona", age: 27, bio: "Fitness lover and tech geek." }, 
   ];
 
+  // store index instead of object
   const [index, setIndex] = useState(0);
 
   const handleNext = () => {
@@ -21,12 +19,9 @@ function App() {
     <div>
       <h1>Profile Viewer</h1>
 
-      {/* Dynamically generate one button per profile */}
-      {profiles.map((profile, i) => (
-        <button key={profile.id} onClick={() => setIndex(i)}>
-          {profile.name}
-        </button>
-      ))}
+      <button onClick={() => setIndex(0)}>Alice</button>
+      <button onClick={() => setIndex(1)}>Bob</button>
+      <button onClick={() => setIndex(2)}>Charlie</button>
 
       <button onClick={handleNext}>Next Profile</button>
 
