@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Without AJAX (Reload Example)</h2>
+    <form action="https://jsonplaceholder.typicode.com/users/1" method="get">
+      <button type="submit">Get User (Reloads Page)</button>
+    </form>
+  </body>
+</html>
+
+
+
+<!-- Without AJAX (Full Reload) -->
+<!-- +---------+       Request (form submit)       +---------+ -->
+<!-- | Browser | ------------------------------- > | Server  | -->
+<!-- | (Client)|                                   |         | -->
+<!-- |         | < ------------------------------- |         | -->
+<!-- |  Reload |       Full HTML Page Response     |         | -->
+<!-- +---------+                                   +---------+ -->
+
+<!-- With AJAX (No Reload)
+<!-- +---------+        Request (AJAX fetch)       +---------+ -->
+<!-- | Browser | ------------------------------- > | Server  | -->
+<!-- | (Client)|                                   |         | -->
+<!-- |         | <-------------------------------- |         | -->
+<!-- |   JS    |       JSON Data Response          |         | -->
+<!-- | Updates |                                   |         | -->
+<!-- |  Page   |                                   |         | -->
+<!-- +---------+                                   +---------+  -->
+
+<!-- [ Client (Browser) ]
+        |
+   fetch("/users/1")
+        |
+        v
+[ Server (API Endpoint) ]
+        |
+  Responds with JSON
+        |
+        v
+{ "id": 1, "name": "Leanne Graham", ... } -->

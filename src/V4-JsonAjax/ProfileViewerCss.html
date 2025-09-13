@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile Viewer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      padding: 10px 14px;
+      font-size: 16px;
+      margin-right: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .card h2 {
+      margin: 0;
+      color: #222;
+    }
+
+    .card p {
+      margin: 8px 0;
+      color: #555;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Profile Viewer</h1>
+  
+  <div class="controls">
+    <input id="userId" type="number" placeholder="Enter User ID (1-10)" />
+    <button id="loadProfile">Load Profile</button>
+    <button id="clearProfile">Clear Profile</button>
+  </div>
+
+  <div id="profile"></div>
+
+  <script>
+    const profileDiv = document.getElementById("profile");
+
+    document.getElementById("loadProfile").addEventListener("click", () => {
+      const id = document.getElementById("userId").value || 1;
+      fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+        .then((res) => {
+          if (!res.ok) throw new Error("User not found");
+          return res.json();
+        })
+        .then((user) => {
+          profileDiv.innerHTML = `
+            <div class="card">
+              <h2>${user.name}</h2>
+              <p><strong>Email:</strong> ${user.email}</p>
+              <p><strong>City:</strong> ${user.address.city}</p>
+              <p><strong>Company:</strong> ${user.company.name}</p>
+              <p><strong>Phone:</strong> ${user.phone}</p>
+            </div>
+          `;
+        })
+        .catch(() => {
+          profileDiv.innerHTML = `<p class="error">❌ User not found</p>`;
+        });
+    });
+
+    document.getElementById("clearProfile").addEventListener("click", () => {
+      profileDiv.innerHTML = "";
+      document.getElementById("userId").value = "";
+    });
+  </script>
+</body>
+</html>
+
