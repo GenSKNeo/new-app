@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUS User Profile Demo</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .app-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #1a237e;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .app-header h1 {
+            font-weight: 400;
+        }
+        
+        /* Styles for the container of all profile cards */
+        .profiles-row {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Styles for individual profile cards */
+        .profile-card {
+            border: 2px solid #ccc;
+            border-radius: 12px;
+            padding: 16px;
+            background: #fff;
+            width: 200px;
+            text-align: center;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Styles for profile images */
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #888;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .profile-card h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #1a237e;
+        }
+        
+        .profile-card p {
+            margin: 4px 0;
+            color: #555;
+        }
+        
+        .instructions {
+            background-color: #e8eaf6;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .instructions h2 {
+            color: #1a237e;
+            margin-bottom: 15px;
+        }
+        
+        .instructions ul {
+            margin-left: 20px;
+            line-height: 1.6;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        // ProfileViewer Component - Displays individual profile card
+        function ProfileViewer({ image, name, age, gender }) {
+            return (
+                <div className="profile-card">
+                    <img src={image} alt={name} className="profile-img" />
+                    <div>
+                        <h2>{name}</h2>
+                        <p>Age: {age}</p>
+                        <p>Gender: {gender}</p>
+                    </div>
+                </div>
+            );
+        }
+
+        // ProfilesList Component - Displays a list of profiles
+        function ProfilesList() {
+            // Array of profile objects with sample data
+            const profiles = [
+                {
+                    image: "https://randomuser.me/api/portraits/men/32.jpg",
+                    name: "John Doe",
+                    age: 28,
+                    gender: "Male",
+                },
+                {
+                    image: "https://randomuser.me/api/portraits/women/45.jpg",
+                    name: "Jane Smith",
+                    age: 25,
+                    gender: "Female",
+                },
+                {
+                    image: "https://randomuser.me/api/portraits/men/11.jpg",
+                    name: "Michael Brown",
+                    age: 30,
+                    gender: "Male",
+                },
+                {
+                    image: "https://randomuser.me/api/portraits/men/65.jpg",
+                    name: "Robert Johnson",
+                    age: 35,
+                    gender: "Male",
+                },
+                {
+                    image: "https://randomuser.me/api/portraits/women/22.jpg",
+                    name: "Sarah Williams",
+                    age: 29,
+                    gender: "Female",
+                },
+                {
+                    image: "https://randomuser.me/api/portraits/women/67.jpg",
+                    name: "Emily Davis",
+                    age: 26,
+                    gender: "Female",
+                },
+            ];
+
+            return (
+                <div className="profiles-row">
+                    {profiles.map((profile, index) => (
+                        <ProfileViewer
+                            key={index}
+                            image={profile.image}
+                            name={profile.name}
+                            age={profile.age}
+                            gender={profile.gender}
+                        />
+                    ))}
+                </div>
+            );
+        }
+
+        // Main App Component
+        function App() {
+            return (
+                <div className="app-container">
+                    <div className="app-header">
+                        <h1>NUS User Profile Demo</h1>
+                    </div>
+                    <div>
+                        <ProfilesList />
+                    </div>
+                    <div className="instructions">
+                        <h2>React Concepts Demonstrated:</h2>
+                        <ul>
+                            <li><strong>Components:</strong> Breaking UI into reusable pieces (App, ProfilesList, ProfileViewer)</li>
+                            <li><strong>JSX:</strong> HTML-like syntax inside JavaScript</li>
+                            <li><strong>Props:</strong> Passing data from parent to child components</li>
+                            <li><strong>Mapping:</strong> Using map() to render lists of components</li>
+                            <li><strong>Event Handling:</strong> Hover effects on profile cards</li>
+                            <li><strong>Styling:</strong> CSS classes for component styling</li>
+                        </ul>
+                    </div>
+                </div>
+            );
+        }
+
+        // Render the App component to the root div
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
