@@ -1,7 +1,7 @@
-import ProfileViewer from "./ProfileViewer.jsx";
+import React from "react";
+import { useParams, Link } from "react-router-dom";
 
-// Array of profile objects with sample data
-            const profiles = [
+const profiles = [
                 {
                     image: "https://randomuser.me/api/portraits/men/32.jpg",
                     name: "John Doe",
@@ -40,20 +40,28 @@ import ProfileViewer from "./ProfileViewer.jsx";
                 },
             ];
 
-function ProfilesList() {
-            return (
-                <div className="profiles-row">
-                    {profiles.map((profile, index) => (
-                        <ProfileViewer
-                            key={index}
-                            image={profile.image}
-                            name={profile.name}
-                            age={profile.age}
-                            gender={profile.gender}
-                        />
-                    ))}
-                </div>
-            );
-        }
+function ProfileDetails() {
+    const { id } = useParams(); // get profile id from URL
+    console.log("id --", id);
 
-export default ProfilesList;
+    const profile = profiles.find((p) => p.id.toString() === id);
+    console.log("profile --", profile);
+
+    if (!profile) {
+        return <h2>Profile not found</h2>;
+    }
+
+    return (
+        <div style={{ textAlign: "center"}}>
+            <h2>{profile.name}'s Details</h2>
+            <img src={profile.image} alt={profile.name} />
+            <p style={{ color: "white"}}>Age: {profile.age}</p>
+            <p style={{ color: "purple"}}>Gender: {profile.gender}</p>
+            <Link to="/">Back to Home</Link>
+
+        </div>
+
+    );
+
+}
+export default ProfileDetails;

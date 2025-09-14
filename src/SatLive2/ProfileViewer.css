@@ -120,3 +120,28 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+/* Center the search bar */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* Search input styling */
+.search-input {
+  height: 40px;
+  width: 300px;
+  font-size: 16px;
+  padding: 0 12px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* On focus: highlight */
+.search-input:focus {
+  outline: none;
+  border-color: #0077ff;
+  box-shadow: 0 0 6px rgba(0, 119, 255, 0.4);
+}
