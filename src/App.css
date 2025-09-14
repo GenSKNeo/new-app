@@ -1,253 +1,261 @@
 /* App.css */
-
-/* Reset default styles for consistent rendering across browsers */
 * {
-  box-sizing: border-box; /* Include padding and border in element's total width/height */
-  margin: 0; /* Remove default margins */
-  padding: 0; /* Remove default padding */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* Base styles for the body element */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font stack */
-  line-height: 1.6; /* Improve readability with increased line height */
-  color: #333; /* Dark gray text color for good contrast */
-  background-color: #f5f7fa; /* Light background color */
-  padding: 20px; /* Add padding around the content */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f7fa;
+  padding: 20px;
 }
 
-/* Main app container styles */
 .App {
-  max-width: 1200px; /* Maximum width for large screens */
-  margin: 0 auto; /* Center the container horizontally */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Header styles */
 .app-header {
-  text-align: center; /* Center align header content */
-  margin-bottom: 40px; /* Space below header */
-  padding: 20px; /* Internal spacing */
-  background: linear-gradient(135deg, #6e8efb, #a777e3); /* Gradient background */
-  color: white; /* White text for contrast */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 25px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .app-header h1 {
-  margin-bottom: 10px; /* Space below heading */
-  font-weight: 600; /* Semi-bold font weight */
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .app-header p {
-  opacity: 0.9; /* Slightly transparent paragraph */
+  opacity: 0.9;
+  margin-bottom: 5px;
 }
 
-/* Container for card components */
+.asia-badge {
+  display: inline-block;
+  background-color: #FF9933;
+  color: #000080;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
 .cards-container {
-  display: grid; /* Use CSS Grid for layout */
-  grid-template-columns: 1fr; /* Single column by default */
-  gap: 30px; /* Space between grid items */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
 }
 
-/* Medium screen responsive styles (tablets) */
 @media (min-width: 768px) {
   .cards-container {
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-columns: repeat(2, 1fr);
   }
   
-  /* Make the last card span two columns */
   .cards-container > :last-child {
     grid-column: span 2;
   }
 }
 
-/* Large screen responsive styles (desktops) */
 @media (min-width: 1024px) {
   .cards-container {
-    grid-template-columns: repeat(3, 1fr); /* Three columns */
+    grid-template-columns: repeat(3, 1fr);
   }
   
-  /* Reset span for last card on large screens */
   .cards-container > :last-child {
     grid-column: auto;
   }
 }
 
-/* Card component styles */
 .card {
-  background: white; /* White background */
-  border-radius: 12px; /* Rounded corners */
-  padding: 25px; /* Internal spacing */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Subtle shadow */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
-  display: flex; /* Use flexbox for internal layout */
-  flex-direction: column; /* Stack children vertically */
-  height: 100%; /* Full height of grid cell */
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-/* Card hover effects */
 .card:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); /* Enhanced shadow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
-/* Card heading styles */
 .card h2 {
-  margin-bottom: 20px; /* Space below heading */
-  color: #2c3e50; /* Dark blue-gray color */
-  border-bottom: 2px solid #a777e3; /* Accent border */
-  padding-bottom: 10px; /* Space between text and border */
-  font-size: 1.4rem; /* Slightly larger font size */
+  margin-bottom: 20px;
+  color: #2c3e50;
+  border-bottom: 2px solid #2575fc;
+  padding-bottom: 10px;
+  font-size: 1.4rem;
 }
 
-/* Primary button styles */
 .btn-primary {
-  background: linear-gradient(135deg, #6e8efb, #a777e3); /* Gradient background */
-  color: white; /* White text */
-  border: none; /* Remove default border */
-  padding: 12px 24px; /* Button padding */
-  border-radius: 6px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 1rem; /* Base font size */
-  font-weight: 500; /* Medium font weight */
-  transition: all 0.2s ease; /* Smooth transition for hover effects */
-  align-self: flex-start; /* Align to start of flex container */
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  align-self: flex-start;
 }
 
-/* Button hover effects */
 .btn-primary:hover {
-  transform: translateY(-2px); /* Lift effect */
-  box-shadow: 0 4px 8px rgba(106, 142, 251, 0.4); /* Glow effect */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(38, 117, 252, 0.4);
 }
 
-/* Color input field styles */
 .color-input {
-  padding: 12px; /* Internal spacing */
-  border: 2px solid #e1e5e9; /* Light border */
-  border-radius: 6px; /* Rounded corners */
-  font-size: 1rem; /* Base font size */
-  margin-bottom: 15px; /* Space below input */
-  transition: border-color 0.3s; /* Smooth border color transition */
-  width: 100%; /* Full width */
+  padding: 12px;
+  border: 2px solid #e1e5e9;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  transition: border-color 0.3s;
+  width: 100%;
 }
 
-/* Focus state for input field */
 .color-input:focus {
-  outline: none; /* Remove default outline */
-  border-color: #6e8efb; /* Change border color on focus */
+  outline: none;
+  border-color: #2575fc;
 }
 
-/* Container for color box and text */
 .color-box-container {
-  margin-top: 15px; /* Space above container */
-  text-align: center; /* Center align content */
+  margin-top: 15px;
+  text-align: center;
 }
 
-/* Color box styles */
 .color-box {
-  width: 150px; /* Fixed width */
-  height: 150px; /* Fixed height */
-  margin: 0 auto 15px; /* Center with margin below */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-/* Color box hover effect */
 .color-box:hover {
-  transform: scale(1.05); /* Slight scale up on hover */
+  transform: scale(1.05);
 }
 
-/* Loading message styles */
 .loading {
-  text-align: center; /* Center align text */
-  padding: 30px; /* Internal spacing */
-  font-style: italic; /* Italic text */
-  color: #7f8c8d; /* Gray text color */
+  text-align: center;
+  padding: 30px;
+  font-style: italic;
+  color: #7f8c8d;
 }
 
-/* User selector container styles */
 .user-selector {
-  margin-bottom: 20px; /* Space below selector */
-  display: flex; /* Use flexbox for layout */
-  align-items: center; /* Center align items vertically */
-  flex-wrap: wrap; /* Allow wrapping on small screens */
-  gap: 10px; /* Space between items */
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-/* User dropdown styles */
 .user-dropdown {
-  padding: 8px 12px; /* Internal spacing */
-  border-radius: 6px; /* Rounded corners */
-  border: 2px solid #e1e5e9; /* Light border */
-  background-color: white; /* White background */
-  font-size: 0.9rem; /* Slightly smaller font */
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 2px solid #e1e5e9;
+  background-color: white;
+  font-size: 0.9rem;
 }
 
-/* User profile container styles */
 .user-profile {
-  background: #f8f9fa; /* Light gray background */
-  padding: 20px; /* Internal spacing */
-  border-radius: 8px; /* Rounded corners */
-  border-left: 4px solid #6e8efb; /* Accent border on left */
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #2575fc;
 }
 
-/* User profile heading styles */
-.user-profile h3 {
-  color: #2c3e50; /* Dark blue-gray color */
-  margin-bottom: 15px; /* Space below heading */
-  font-size: 1.3rem; /* Slightly larger font */
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* User profile paragraph styles */
-.user-profile p {
-  margin-bottom: 8px; /* Space below paragraphs */
-  padding-bottom: 8px; /* Space between text and border */
-  border-bottom: 1px solid #eee; /* Subtle separator */
+.profile-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2575fc;
+  margin-bottom: 15px;
 }
 
-/* Remove border from last paragraph */
-.user-profile p:last-child {
+.user-location {
+  color: #6a11cb;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.profile-details {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.profile-details p {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-details p:last-child {
   border-bottom: none;
 }
 
-/* Fade-in animation keyframes */
 @keyframes fadeIn {
   from {
-    opacity: 0; /* Start invisible */
-    transform: translateY(10px); /* Start slightly lower */
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-    opacity: 1; /* End fully visible */
-    transform: translateY(0); /* End at normal position */
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Class to apply fade-in animation */
 .fade-in {
-  animation: fadeIn 0.5s ease forwards; /* Apply animation */
+  animation: fadeIn 0.5s ease forwards;
 }
 
-/* Mobile-specific responsive adjustments */
 @media (max-width: 480px) {
   body {
-    padding: 10px; /* Reduce padding on small screens */
+    padding: 10px;
   }
   
   .card {
-    padding: 20px; /* Reduce card padding */
+    padding: 20px;
   }
   
   .app-header {
-    padding: 15px; /* Reduce header padding */
+    padding: 15px;
   }
   
   .app-header h1 {
-    font-size: 1.5rem; /* Smaller heading on mobile */
+    font-size: 1.5rem;
   }
   
   .user-selector {
-    flex-direction: column; /* Stack selector items vertically */
-    align-items: flex-start; /* Align to start */
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .profile-image {
+    width: 80px;
+    height: 80px;
   }
 }
